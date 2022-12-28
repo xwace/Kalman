@@ -1,6 +1,6 @@
 #include "opencv2/video/tracking.hpp"
 #include "opencv2/highgui/highgui.hpp"
-#include <stdio.h>
+#include <cstdio>
 using namespace cv;
 using namespace std;
 
@@ -18,7 +18,7 @@ void mouseEvent(int event, int x, int y, int flags, void *param )
     }
 }
 
-int main (void)
+int main ()
 {
     RNG rng;
     //1.kalman filter setup
