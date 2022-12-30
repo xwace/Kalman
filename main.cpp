@@ -2,6 +2,7 @@
 #include "opencv2/highgui/highgui.hpp"
 #include <cstdio>
 #include <iostream>
+#include "PFTracker.h"
 
 using namespace cv;
 using namespace std;
@@ -120,11 +121,13 @@ int main ()
 {
 //    kalManFilter();
 
-    float inrad = 13;
-    float outrad = 4;
-    int maxnum = 100;
+PFTRACKER::run();
 
-    Mat img(300,300,0);
-    randu(img,0,255);
-    auto vmats = TrackerSamplerCSCsampleImage(img, 100, 100, 20, 20,inrad,outrad,maxnum);
+//    float inrad = 13;
+//    float outrad = 4;
+//    int maxnum = 100;
+//
+//    Mat img(300,300,0);
+//    randu(img,0,255);
+//    auto vmats = TrackerSamplerCSCsampleImage(img, 100, 100, 20, 20,inrad,outrad,maxnum);
 }
