@@ -94,15 +94,20 @@ std::vector<Mat> TrackerSamplerCSCsampleImage(const Mat& img, int x, int y, int 
 
     float prob = ((float)(maxnum)) / samples.size();
 
+    Mat rectImg(img.size(),CV_8UC3,Scalar(0,0,0));
     for (int r = minrow; r <= int(maxrow); r++)
         for (int c = mincol; c <= int(maxcol); c++)
         {
             dist = (y - r) * (y - r) + (x - c) * (x - c);
-            cout<<"prob: "<<prob<<" "<<float(rng.uniform(0.f, 1.f))<<" dist: "<<dist<<endl;
             if (float(rng.uniform(0.f, 1.f)) < prob && dist < inradsq && dist >= outradsq)
             {
                 samples[i] = img(Rect(c, r, w, h));
                 i++;
+
+                rectangle(rectImg,Rect(c, r, w, h),Scalar(rng.uniform(0.f, 1.f)*255,rng.uniform(0.f, 1.f)*255,90),1);
+                namedWindow("rect",2);
+                imshow("rect",rectImg);
+                waitKey();
             }
         }
 
@@ -119,7 +124,7 @@ int main ()
     float outrad = 4;
     int maxnum = 100;
 
-    Mat img(100,100,0);
+    Mat img(300,300,0);
     randu(img,0,255);
-    auto vmats = TrackerSamplerCSCsampleImage(img, 1, 1, 3, 3,inrad,outrad,maxnum);
+    auto vmats = TrackerSamplerCSCsampleImage(img, 100, 100, 20, 20,inrad,outrad,maxnum);
 }
